@@ -1,0 +1,11 @@
+interface:
+  display_name: "RAW 智能选片"
+  short_description: "批量筛选 RAW，识别曝光包围、对焦包围、模糊和重复连拍"
+  default_prompt: "使用 $raw-photo-culler 初筛这批 RAW 照片，并将曝光包围和对焦包围序列分别归组。"
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
