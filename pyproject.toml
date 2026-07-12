@@ -32,9 +32,9 @@ raw = ["rawpy>=0.19"]
 raw-photo-culler = "raw_photo_culler.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/AjaxFlare/raw-photo-culler"
-Repository = "https://github.com/AjaxFlare/raw-photo-culler"
-Issues = "https://github.com/AjaxFlare/raw-photo-culler/issues"
+Homepage = "https://github.com/AjaxFlare/-raw-photo-culler"
+Repository = "https://github.com/AjaxFlare/-raw-photo-culler"
+Issues = "https://github.com/AjaxFlare/-raw-photo-culler/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

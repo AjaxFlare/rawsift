@@ -2,7 +2,7 @@
 
 English | [简体中文](README.zh-CN.md)
 
-[![Tests](https://github.com/AjaxFlare/raw-photo-culler/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/raw-photo-culler/actions/workflows/tests.yml)
+[![Tests](https://github.com/AjaxFlare/-raw-photo-culler/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/-raw-photo-culler/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 RAW Photo Culler is a non-destructive first-pass photo selection tool and ChatGPT/Codex Skill. It extracts previews from camera RAW files, detects exposure- and focus-bracketing sequences before ordinary duplicate culling, scores technical quality, and produces a reviewable HTML report.
@@ -24,7 +24,7 @@ It is designed for photographers who shoot RAW, bursts, HDR brackets, macro focu
 ## Quick start
 
 ```bash
-git clone https://github.com/AjaxFlare/raw-photo-culler.git
+git clone https://github.com/AjaxFlare/-raw-photo-culler.git
 cd raw-photo-culler
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
