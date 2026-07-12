@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Repository-local wrapper for the RawSift CLI."""
+"""Repository-local wrapper for the rawsift CLI."""
 
 from pathlib import Path
 import sys
@@ -13,4 +13,3 @@ from rawsift.cli import main  # noqa: E402
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

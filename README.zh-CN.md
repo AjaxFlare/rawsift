@@ -1,4 +1,4 @@
-# RawSift
+# rawsift
 
 **Bracket-aware, non-destructive RAW photo culling.**
 
@@ -7,7 +7,7 @@
 [![Tests](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-RawSift 是一款非破坏式 RAW 照片智能初筛工具，可识别曝光包围和对焦包围序列、归组连拍照片、评估技术质量，并生成可人工复核的 HTML 报告，全程不修改原始照片。
+rawsift 是一款非破坏式 RAW 照片智能初筛工具，可识别曝光包围和对焦包围序列、归组连拍照片、评估技术质量，并生成可人工复核的 HTML 报告，全程不修改原始照片。
 
 适用于 RAW、连拍、HDR 包围、微距景深合成、昆虫、自然、旅行和活动摄影。
 
@@ -115,4 +115,3 @@ python -m pip install -e ".[raw]"
 ## 许可证
 
 [MIT](LICENSE)
-

@@ -3,7 +3,7 @@ name: rawsift
 description: Batch-cull camera RAW and ordinary image files, extract safe previews, detect exposure-bracketing and focus-bracketing sequences before near-duplicate bursts, identify technical problems, score candidates, and generate grouped folders, an HTML gallery, CSV, JSON, and contact sheets for visual review. Use when Codex needs to help select, shortlist, compare, rate, group, or triage NEF, DNG, CR2, CR3, ARW, RAF, ORF, RW2, PEF, SRW, JPEG, TIFF, PNG, or WebP photos, especially nature, insect, macro, HDR, focus stacking, travel, event, or burst photography.
 ---
 
-# RawSift
+# rawsift
 
 Use deterministic analysis for the first pass and visual judgment for the final pass. Treat every automatic label as a recommendation, never as permission to delete a source file.
 

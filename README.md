@@ -1,4 +1,4 @@
-# RawSift
+# rawsift
 
 **Bracket-aware, non-destructive RAW photo culling.**
 
@@ -7,7 +7,7 @@ English | [简体中文](README.zh-CN.md)
 [![Tests](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-RawSift analyzes camera RAW files, identifies exposure and focus brackets, groups burst sequences, scores technical quality, and generates a reviewable HTML report—without modifying the originals.
+rawsift analyzes camera RAW files, identifies exposure and focus brackets, groups burst sequences, scores technical quality, and generates a reviewable HTML report—without modifying the originals.
 
 It is designed for photographers who shoot RAW, bursts, HDR brackets, macro focus stacks, wildlife, nature, travel, or events.
 
@@ -115,4 +115,3 @@ python -m pip install -e ".[raw]"
 ## License
 
 [MIT](LICENSE)
-
