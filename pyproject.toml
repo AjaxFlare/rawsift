@@ -30,6 +30,7 @@ raw = ["rawpy>=0.19"]
 
 [project.scripts]
 rawsift = "rawsift.cli:main"
+raw-photo-culler = "rawsift.cli:deprecated_main"
 
 [project.urls]
 Homepage = "https://github.com/AjaxFlare/rawsift"
