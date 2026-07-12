@@ -1,7 +1,7 @@
 interface:
-  display_name: "RAW 智能选片"
+  display_name: "RawSift｜RAW 照片智能初筛工具"
   short_description: "批量筛选 RAW，识别曝光包围、对焦包围、模糊和重复连拍"
-  default_prompt: "使用 $raw-photo-culler 初筛这批 RAW 照片，并将曝光包围和对焦包围序列分别归组。"
+  default_prompt: "Use $rawsift to cull this RAW folder in macro-nature mode. Keep about 25%, and group exposure and focus brackets separately."
 policy:
   products:
   - chatgpt

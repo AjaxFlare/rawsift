@@ -61,7 +61,7 @@ def parse_args() -> argparse.Namespace:
         description="Safely score and group RAW/JPEG photos without modifying originals."
     )
     parser.add_argument("input", type=Path, help="Input photo or directory")
-    parser.add_argument("--output", type=Path, default=Path("raw-cull-report"), help="Output report directory")
+    parser.add_argument("--output", type=Path, default=Path("rawsift-report"), help="Output report directory")
     parser.add_argument("--profile", choices=("general", "macro-nature"), default="general")
     parser.add_argument("--keep-rate", type=float, default=0.25)
     parser.add_argument("--duplicate-window", type=int, default=8)
@@ -876,18 +876,23 @@ def report_html(summary: dict[str, Any], items: list[dict[str, Any]], failures: 
     count = summary["counts"]
     return f"""<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RAW 智能选片报告</title>
+<title>RawSift｜RAW 照片智能初筛工具报告</title>
 <style>
 :root{{--bg:#f4f5f2;--panel:#fff;--ink:#17211c;--muted:#66716b;--line:#dde2dd;--pick:#168a59;--maybe:#b77b0c;--duplicate:#5965bd;--reject:#c44848;--focus:#168aa3;--exposure:#d47725}}
 *{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif}}main{{max-width:1500px;margin:auto;padding:32px}}h1{{margin:0 0 8px;font-size:clamp(28px,4vw,50px)}}.subtitle{{color:var(--muted);margin:0 0 24px}}.stats{{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:22px 0}}.stat{{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}}.stat b{{display:block;font-size:28px}}.stat span{{color:var(--muted)}}.controls{{position:sticky;top:0;z-index:5;padding:12px 0;background:rgba(244,245,242,.94);backdrop-filter:blur(8px)}}button,.download{{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 13px;border-radius:999px;margin:3px;cursor:pointer;text-decoration:none;font-size:14px}}button.active{{background:#17211c;color:white}}.grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}}.photo{{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 5px 18px rgba(22,35,28,.05)}}.image-wrap{{aspect-ratio:4/3;background:#151a17;display:flex;align-items:center;justify-content:center}}.image-wrap img{{width:100%;height:100%;object-fit:contain}}.content{{padding:14px}}.line{{display:flex;justify-content:space-between;align-items:center}}.line strong{{font-size:22px}}.badge{{color:white;padding:4px 9px;border-radius:999px;font-size:12px}}.badge.pick{{background:var(--pick)}}.badge.maybe{{background:var(--maybe)}}.badge.duplicate{{background:var(--duplicate)}}.badge.reject{{background:var(--reject)}}.badge.focus-bracket{{background:var(--focus)}}.badge.exposure-bracket{{background:var(--exposure)}}h3{{margin:12px 0 7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:16px}}p{{color:var(--muted);min-height:42px;font-size:13px;line-height:1.55}}dl{{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:5px 10px;font-size:12px}}dt{{color:var(--muted)}}dd{{margin:0;text-align:right}}section{{margin-top:34px}}table{{width:100%;border-collapse:collapse;background:white}}th,td{{text-align:left;padding:10px;border-bottom:1px solid var(--line);font-size:13px}}.note{{background:#eef2ed;border-left:4px solid #66806f;padding:12px 16px;border-radius:8px;margin:18px 0}}.bracket-section>h2{{font-size:28px;margin-bottom:16px}}.bracket-group{{border:1px solid var(--line);border-radius:18px;padding:18px;margin:18px 0;background:#e9eeea}}.group-heading{{display:flex;align-items:center;justify-content:space-between;gap:12px}}.group-heading h3{{font-size:20px;margin:0;overflow:visible}}.group-heading span,.group-reason{{color:var(--muted);font-size:13px}}.group-reason{{min-height:0;margin:6px 0 14px}}.bracket-grid{{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}}@media(max-width:760px){{main{{padding:18px}}.stats{{grid-template-columns:repeat(2,1fr)}}}}
 </style></head><body><main>
-<h1>RAW 智能选片报告</h1><p class="subtitle">{html.escape(summary['generated_at'])} · {html.escape(summary['profile'])} 模式 · 技术评分仅在本批次内有效</p>
+<h1>RawSift｜RAW 照片智能初筛工具报告</h1><p class="subtitle">{html.escape(summary['generated_at'])} · {html.escape(summary['profile'])} 模式 · 技术评分仅在本批次内有效</p>
 <div class="stats"><div class="stat"><b>{summary['analyzed']}</b><span>成功分析</span></div><div class="stat"><b>{count.get('pick',0)}</b><span>精选候选</span></div><div class="stat"><b>{count.get('maybe',0)}</b><span>备选</span></div><div class="stat"><b>{count.get('duplicate',0)}</b><span>重复备选</span></div><div class="stat"><b>{count.get('exposure-bracket',0)}</b><span>曝光包围照片</span></div><div class="stat"><b>{count.get('focus-bracket',0)}</b><span>对焦包围照片</span></div><div class="stat"><b>{count.get('reject',0)}</b><span>技术淘汰候选</span></div></div>
 <div class="note">包围序列已先于重复连拍识别，并从重复淘汰中排除。自动识别仍需结合联系表复核；原始照片未被修改。</div>
 {''.join(bracket_sections)}
 <div class="controls"><button class="active" data-filter="all">全部</button><button data-filter="pick">精选</button><button data-filter="maybe">备选</button><button data-filter="duplicate">重复</button><button data-filter="reject">技术问题</button><a class="download" href="analysis.csv">下载 CSV</a><a class="download" href="analysis.json">查看 JSON</a></div>
 <div class="grid culling-grid">{''.join(cards)}</div>{failure_html}
 </main><script>document.querySelectorAll('button[data-filter]').forEach(b=>b.addEventListener('click',()=>{{document.querySelectorAll('button[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;document.querySelectorAll('.culling-grid .photo').forEach(c=>c.style.display=(f==='all'||c.dataset.label===f)?'block':'none')}}));</script></body></html>"""
+
+
+def deprecated_main() -> int:
+    """Deprecated compatibility entry point for the legacy `raw-photo-culler` command."""
+    return main()
 
 
 def main() -> int:

@@ -11,7 +11,7 @@ from unittest.mock import patch
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
-from raw_photo_culler.cli import main
+from rawsift.cli import main
 
 
 def file_hash(path: Path) -> str:
@@ -80,7 +80,7 @@ class BracketDetectionTests(unittest.TestCase):
         output = self.root / "report"
         before = {path.name: file_hash(path) for path in self.source.iterdir()}
         argv = [
-            "raw-photo-culler",
+            "rawsift",
             str(self.source),
             "--output",
             str(output),
@@ -110,7 +110,7 @@ class BracketDetectionTests(unittest.TestCase):
     def test_bracket_detection_can_be_disabled(self) -> None:
         output = self.root / "report"
         argv = [
-            "raw-photo-culler",
+            "rawsift",
             str(self.source),
             "--output",
             str(output),

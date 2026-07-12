@@ -24,7 +24,7 @@ ExifTool 和 FFmpeg 是可选的系统级后备解码器。它们位于 `PATH` �
 ## 基本命令
 
 ```bash
-raw-photo-culler 输入路径 --output 输出目录 [选项]
+rawsift 输入路径 --output 输出目录 [选项]
 ```
 
 输入路径可以是单个支持的文件，也可以是文件夹。文件夹会递归扫描。如果指定的输出目录已经包含文件，程序会建立带编号的新目录，不会覆盖旧报告。
@@ -57,13 +57,13 @@ raw-photo-culler 输入路径 --output 输出目录 [选项]
 普通选片：
 
 ```bash
-raw-photo-culler ~/Pictures/Trip --output ./trip-report
+rawsift ~/Pictures/Trip --output ./trip-report
 ```
 
 昆虫与微距：
 
 ```bash
-raw-photo-culler ~/Pictures/Insects \
+rawsift ~/Pictures/Insects \
   --output ./insect-report \
   --profile macro-nature \
   --keep-rate 0.30
@@ -72,7 +72,7 @@ raw-photo-culler ~/Pictures/Insects \
 较长的鸟类连拍：
 
 ```bash
-raw-photo-culler ~/Pictures/Birds \
+rawsift ~/Pictures/Birds \
   --output ./bird-report \
   --duplicate-window 20
 ```
@@ -80,7 +80,7 @@ raw-photo-culler ~/Pictures/Birds \
 生成 XMP 建议，但不写入原片所在目录：
 
 ```bash
-raw-photo-culler ~/Pictures/RAW \
+rawsift ~/Pictures/RAW \
   --output ./review \
   --export-xmp
 ```
@@ -88,7 +88,7 @@ raw-photo-culler ~/Pictures/RAW \
 明确接受额外存储占用后，复制包围组完整原片：
 
 ```bash
-raw-photo-culler ~/Pictures/HDR-and-Stacks \
+rawsift ~/Pictures/HDR-and-Stacks \
   --output ./review \
   --copy-bracket-originals
 ```

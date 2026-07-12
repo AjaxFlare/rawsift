@@ -24,7 +24,7 @@ ExifTool and FFmpeg are optional system-level fallbacks. The program discovers t
 ## Basic command
 
 ```bash
-raw-photo-culler INPUT --output OUTPUT [OPTIONS]
+rawsift INPUT --output OUTPUT [OPTIONS]
 ```
 
 `INPUT` may be one supported file or a directory. Directories are scanned recursively. If the requested output directory is non-empty, the program creates a numbered sibling rather than overwriting it.
@@ -57,13 +57,13 @@ Gives more weight to the central 60% of the frame. Choose it for insects, flower
 General selection:
 
 ```bash
-raw-photo-culler ~/Pictures/Trip --output ./trip-report
+rawsift ~/Pictures/Trip --output ./trip-report
 ```
 
 Macro and insect folder:
 
 ```bash
-raw-photo-culler ~/Pictures/Insects \
+rawsift ~/Pictures/Insects \
   --output ./insect-report \
   --profile macro-nature \
   --keep-rate 0.30
@@ -72,7 +72,7 @@ raw-photo-culler ~/Pictures/Insects \
 Long burst sequences:
 
 ```bash
-raw-photo-culler ~/Pictures/Birds \
+rawsift ~/Pictures/Birds \
   --output ./bird-report \
   --duplicate-window 20
 ```
@@ -80,7 +80,7 @@ raw-photo-culler ~/Pictures/Birds \
 Create XMP recommendations without writing beside originals:
 
 ```bash
-raw-photo-culler ~/Pictures/RAW \
+rawsift ~/Pictures/RAW \
   --output ./review \
   --export-xmp
 ```
@@ -88,7 +88,7 @@ raw-photo-culler ~/Pictures/RAW \
 Copy full bracket originals after explicitly deciding that the extra storage is acceptable:
 
 ```bash
-raw-photo-culler ~/Pictures/HDR-and-Stacks \
+rawsift ~/Pictures/HDR-and-Stacks \
   --output ./review \
   --copy-bracket-originals
 ```
