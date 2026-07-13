@@ -6,6 +6,6 @@ __pycache__/
 venv/
 dist/
 build/
-raw-cull-report*/
+rawsift-report*/
 .DS_Store
 

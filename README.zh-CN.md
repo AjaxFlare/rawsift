@@ -1,11 +1,13 @@
-# RAW 智能选片
+# rawsift
+
+**Bracket-aware, non-destructive RAW photo culling.**
 
 [English](README.md) | 简体中文
 
-[![Tests](https://github.com/AjaxFlare/-raw-photo-culler/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/-raw-photo-culler/actions/workflows/tests.yml)
+[![Tests](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-RAW 智能选片是一个非破坏性的照片初筛工具，同时可以作为 ChatGPT/Codex Skill 使用。它能够提取相机 RAW 预览，优先识别曝光包围和对焦包围，再处理普通重复连拍，并输出可人工复核的 HTML 报告。
+rawsift 是一款非破坏式 RAW 照片智能初筛工具，可识别曝光包围和对焦包围序列、归组连拍照片、评估技术质量，并生成可人工复核的 HTML 报告，全程不修改原始照片。
 
 适用于 RAW、连拍、HDR 包围、微距景深合成、昆虫、自然、旅行和活动摄影。
 
@@ -24,18 +26,18 @@ RAW 智能选片是一个非破坏性的照片初筛工具，同时可以作为 
 ## 快速开始
 
 ```bash
-git clone https://github.com/AjaxFlare/-raw-photo-culler.git
-cd raw-photo-culler
+git clone https://github.com/AjaxFlare/rawsift.git
+cd rawsift
 python -m venv .venv
 source .venv/bin/activate  # Windows：.venv\Scripts\activate
 python -m pip install -e .
 
-raw-photo-culler /path/to/photos \
-  --output ./raw-cull-report \
+rawsift /path/to/photos \
+  --output ./rawsift-report \
   --profile macro-nature
 ```
 
-运行完成后打开 `raw-cull-report/report.html`。
+运行完成后打开 `rawsift-report/report.html`。
 
 ## 作为 ChatGPT/Codex Skill 使用
 
@@ -48,7 +50,7 @@ raw-photo-culler /path/to/photos \
 
 调用示例：
 
-> 使用 `$raw-photo-culler` 按微距自然模式初筛这个 RAW 文件夹，保留约 25%，并分别归组曝光包围和对焦包围。
+> Use $rawsift to cull this RAW folder in macro-nature mode. Keep about 25%, and group exposure and focus brackets separately.
 
 ## 包围序列处理
 
@@ -65,7 +67,7 @@ raw-photo-culler /path/to/photos \
 ## 输出结构
 
 ```text
-raw-cull-report/
+rawsift-report/
 ├── report.html
 ├── summary.json
 ├── analysis.json
@@ -113,4 +115,3 @@ python -m pip install -e ".[raw]"
 ## 许可证
 
 [MIT](LICENSE)
-

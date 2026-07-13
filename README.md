@@ -1,11 +1,13 @@
-# RAW Photo Culler
+# rawsift
+
+**Bracket-aware, non-destructive RAW photo culling.**
 
 English | [简体中文](README.zh-CN.md)
 
-[![Tests](https://github.com/AjaxFlare/-raw-photo-culler/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/-raw-photo-culler/actions/workflows/tests.yml)
+[![Tests](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-RAW Photo Culler is a non-destructive first-pass photo selection tool and ChatGPT/Codex Skill. It extracts previews from camera RAW files, detects exposure- and focus-bracketing sequences before ordinary duplicate culling, scores technical quality, and produces a reviewable HTML report.
+rawsift analyzes camera RAW files, identifies exposure and focus brackets, groups burst sequences, scores technical quality, and generates a reviewable HTML report—without modifying the originals.
 
 It is designed for photographers who shoot RAW, bursts, HDR brackets, macro focus stacks, wildlife, nature, travel, or events.
 
@@ -24,18 +26,18 @@ It is designed for photographers who shoot RAW, bursts, HDR brackets, macro focu
 ## Quick start
 
 ```bash
-git clone https://github.com/AjaxFlare/-raw-photo-culler.git
-cd raw-photo-culler
+git clone https://github.com/AjaxFlare/rawsift.git
+cd rawsift
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
 python -m pip install -e .
 
-raw-photo-culler /path/to/photos \
-  --output ./raw-cull-report \
+rawsift /path/to/photos \
+  --output ./rawsift-report \
   --profile macro-nature
 ```
 
-Open `raw-cull-report/report.html` after the run.
+Open `rawsift-report/report.html` after the run.
 
 ## Use as a ChatGPT/Codex Skill
 
@@ -48,7 +50,7 @@ Clone or copy the complete repository into your personal skills environment. The
 
 Invoke it with a request such as:
 
-> Use `$raw-photo-culler` to cull this RAW folder in macro-nature mode. Keep about 25%, and group exposure and focus brackets separately.
+> Use $rawsift to cull this RAW folder in macro-nature mode. Keep about 25%, and group exposure and focus brackets separately.
 
 ## Bracket handling
 
@@ -65,7 +67,7 @@ Visually inferred bracket groups are marked with confidence. Medium-confidence g
 ## Output
 
 ```text
-raw-cull-report/
+rawsift-report/
 ├── report.html
 ├── summary.json
 ├── analysis.json
@@ -113,4 +115,3 @@ python -m pip install -e ".[raw]"
 ## License
 
 [MIT](LICENSE)
-
