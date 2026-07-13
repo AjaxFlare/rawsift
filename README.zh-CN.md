@@ -2,10 +2,10 @@
 
 [English](README.md) | 简体中文
 
-[![Tests](https://github.com/AjaxFlare/-raw-photo-culler/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/-raw-photo-culler/actions/workflows/tests.yml)
+[![Tests](https://github.com/AjaxFlare/raw-photo-culler/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/raw-photo-culler/actions/workflows/tests.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-RAW 智能选片是一个非破坏性的照片初筛工具，同时可以作为 ChatGPT/Codex Skill 使用。它能够提取相机 RAW 预览，优先识别曝光包围和对焦包围，再处理普通重复连拍，并输出可人工复核的 HTML 报告。
+RAW 智能选片是一个非破坏性的照片初筛工具，同时可以作为 ChatGPT/Codex Skill 使用。它能够提取相机 RAW 预览，优先识别曝光包围和对焦包围，再处理普通重复片，帮助你保留技术质量更强的照片，同时保持创作自主性。
 
 适用于 RAW、连拍、HDR 包围、微距景深合成、昆虫、自然、旅行和活动摄影。
 
@@ -24,7 +24,7 @@ RAW 智能选片是一个非破坏性的照片初筛工具，同时可以作为 
 ## 快速开始
 
 ```bash
-git clone https://github.com/AjaxFlare/-raw-photo-culler.git
+git clone https://github.com/AjaxFlare/raw-photo-culler.git
 cd raw-photo-culler
 python -m venv .venv
 source .venv/bin/activate  # Windows：.venv\Scripts\activate
@@ -113,4 +113,3 @@ python -m pip install -e ".[raw]"
 ## 许可证
 
 [MIT](LICENSE)
-
