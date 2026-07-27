@@ -976,5 +976,11 @@ def main() -> int:
     return 0 if items else 3
 
 
+def deprecated_main() -> int:
+    """Run the legacy command while pointing users to the canonical name."""
+    print("Warning: 'raw-photo-culler' is deprecated; use 'rawsift' instead.", file=sys.stderr)
+    return main()
+
+
 if __name__ == "__main__":
     raise SystemExit(main())

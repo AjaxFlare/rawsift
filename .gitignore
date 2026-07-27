@@ -8,4 +8,6 @@ dist/
 build/
 rawsift-report*/
 .DS_Store
-
+web/node_modules/
+!src/rawsift/web/dist/
+!src/rawsift/web/dist/**
