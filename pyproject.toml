@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rawsift"
-version = "0.1.0"
+version = "0.2.0"
 description = "Bracket-aware, non-destructive RAW photo culling"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -27,10 +27,20 @@ dependencies = [
 
 [project.optional-dependencies]
 raw = ["rawpy>=0.19"]
+app = [
+  "fastapi>=0.116",
+  "openai>=1.99",
+  "python-multipart>=0.0.20",
+  "uvicorn[standard]>=0.35",
+]
+dev = [
+  "httpx>=0.28",
+]
 
 [project.scripts]
 rawsift = "rawsift.cli:main"
 raw-photo-culler = "rawsift.cli:deprecated_main"
+rawsift-app = "rawsift.app.launcher:main"
 
 [project.urls]
 Homepage = "https://github.com/AjaxFlare/rawsift"
@@ -39,3 +49,6 @@ Issues = "https://github.com/AjaxFlare/rawsift/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+rawsift = ["web/dist/*", "web/dist/assets/*"]

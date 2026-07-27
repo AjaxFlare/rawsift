@@ -39,6 +39,26 @@ rawsift /path/to/photos \
 
 运行完成后打开 `rawsift-report/report.html`。
 
+## 本地软件与外接视觉 API
+
+rawsift 现在包含适用于 Windows 和 macOS 的本地浏览器软件。确定性技术初筛、RAW 解码、包围识别和报告生成都在电脑本机完成。可选的 OpenAI 兼容视觉 API 只负责判断构图、主体清晰度、表情、时机和干扰元素。
+
+```bash
+python -m pip install -e ".[app,raw]"
+rawsift-app
+```
+
+软件会自动打开 `http://127.0.0.1:8765`。在界面的「API 设置」中填写服务地址、模型和 API Key。也可以使用环境变量：
+
+```bash
+export OPENAI_API_KEY="你的密钥"
+export OPENAI_BASE_URL="https://api.openai.com/v1"
+export RAWSIFT_VISION_MODEL="gpt-5.6"
+rawsift-app
+```
+
+服务仅监听本机地址。API Key 不会写入任务文件或日志。每次 AI 复核最多发送 8 张经过尺寸和质量限制的 JPEG 预览，RAW 原片不会发送给 API。
+
 ## 作为 ChatGPT/Codex Skill 使用
 
 将完整仓库克隆或复制到个人 Skill 环境。仓库根目录已经包含所需文件：
@@ -99,6 +119,8 @@ python -m pip install -e ".[raw]"
 
 ## 文档
 
+- [本地软件与外接 API 完整指南](docs/APP.zh-CN.md)
+- [Local app and external API guide](docs/APP.md)
 - [完整中文使用指南](docs/USAGE.zh-CN.md)
 - [中文识别与评分算法](docs/ALGORITHM.zh-CN.md)
 - [English usage guide](docs/USAGE.md)

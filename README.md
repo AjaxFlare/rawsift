@@ -39,6 +39,26 @@ rawsift /path/to/photos \
 
 Open `rawsift-report/report.html` after the run.
 
+## Local application + external vision API
+
+rawsift also includes a local browser application for Windows and macOS. The deterministic pass, RAW decoding, bracket detection, and report generation stay on your computer. An optional OpenAI-compatible vision provider can review compressed JPEG previews for composition, subject clarity, expression, timing, and distractions.
+
+```bash
+python -m pip install -e ".[app,raw]"
+rawsift-app
+```
+
+The application opens at `http://127.0.0.1:8765`. Configure the provider in **API Settings**. You can use environment variables instead of entering credentials in the interface:
+
+```bash
+export OPENAI_API_KEY="your-key"
+export OPENAI_BASE_URL="https://api.openai.com/v1"
+export RAWSIFT_VISION_MODEL="gpt-5.6"
+rawsift-app
+```
+
+The server binds only to the local computer. API keys are not written to job files or logs. A single AI review sends at most eight bounded JPEG previews; RAW originals are never sent to the provider.
+
 ## Use as a ChatGPT/Codex Skill
 
 Clone or copy the complete repository into your personal skills environment. The required Skill files are included at the repository root:
@@ -99,6 +119,8 @@ python -m pip install -e ".[raw]"
 
 ## Documentation
 
+- [Local application and external API](docs/APP.md)
+- [本地软件与外接 API](docs/APP.zh-CN.md)
 - [Full usage guide](docs/USAGE.md)
 - [Detection and scoring algorithm](docs/ALGORITHM.md)
 - [中文使用指南](docs/USAGE.zh-CN.md)
