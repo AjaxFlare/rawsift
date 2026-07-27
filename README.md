@@ -5,6 +5,7 @@
 English | [简体中文](README.zh-CN.md)
 
 [![Tests](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml)
+[![Latest release](https://img.shields.io/github/v/release/AjaxFlare/rawsift)](https://github.com/AjaxFlare/rawsift/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 rawsift analyzes camera RAW files, identifies exposure and focus brackets, groups burst sequences, scores technical quality, and generates a reviewable HTML report—without modifying the originals.
@@ -23,7 +24,22 @@ It is designed for photographers who shoot RAW, bursts, HDR brackets, macro focu
 - Generates an HTML gallery, CSV, JSON, contact sheets, grouped bracket previews, and optional Lightroom-compatible XMP sidecars.
 - Never deletes, moves, renames, overwrites, or edits source photos.
 
-## Quick start
+## Download for Windows
+
+**[Download rawsift 0.2.0 for Windows x64](https://github.com/AjaxFlare/rawsift/releases/download/v0.2.0/rawsift-0.2.0-windows-x64.exe)**
+
+The portable executable includes Python and all required application dependencies:
+
+1. Download and double-click `rawsift-0.2.0-windows-x64.exe`.
+2. Keep the console window open while using rawsift.
+3. The application opens in your default browser at `http://127.0.0.1:8765`.
+4. Close the console window to stop the local application.
+
+No installation or Python environment is required. Job data is stored under `%USERPROFILE%\.rawsift\jobs`. The executable is currently unsigned, so Windows SmartScreen may show an unknown-publisher warning. The release page includes the SHA-256 checksum and validation details.
+
+See [all releases](https://github.com/AjaxFlare/rawsift/releases) for other versions and release notes.
+
+## Install from source / CLI quick start
 
 ```bash
 git clone https://github.com/AjaxFlare/rawsift.git
@@ -42,6 +58,8 @@ Open `rawsift-report/report.html` after the run.
 ## Local application + external vision API
 
 rawsift also includes a local browser application for Windows and macOS. The deterministic pass, RAW decoding, bracket detection, and report generation stay on your computer. An optional OpenAI-compatible vision provider can review compressed JPEG previews for composition, subject clarity, expression, timing, and distractions.
+
+Windows users can run the portable executable above. For macOS, development, or source-based installation, use:
 
 ```bash
 python -m pip install -e ".[app,raw]"
