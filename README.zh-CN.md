@@ -5,6 +5,7 @@
 [English](README.md) | 简体中文
 
 [![Tests](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml/badge.svg)](https://github.com/AjaxFlare/rawsift/actions/workflows/tests.yml)
+[![最新版本](https://img.shields.io/github/v/release/AjaxFlare/rawsift)](https://github.com/AjaxFlare/rawsift/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 rawsift 是一款非破坏式 RAW 照片智能初筛工具，可识别曝光包围和对焦包围序列、归组连拍照片、评估技术质量，并生成可人工复核的 HTML 报告，全程不修改原始照片。
@@ -23,7 +24,22 @@ rawsift 是一款非破坏式 RAW 照片智能初筛工具，可识别曝光包�
 - 输出 HTML、CSV、JSON、联系表、独立包围组预览，以及可选的 Lightroom XMP 星级文件。
 - 不删除、不移动、不重命名、不覆盖、不修改任何原片。
 
-## 快速开始
+## Windows 程序下载
+
+**[下载 rawsift 0.2.0 Windows x64 版](https://github.com/AjaxFlare/rawsift/releases/download/v0.2.0/rawsift-0.2.0-windows-x64.exe)**
+
+该便携式程序已包含 Python 和应用所需依赖：
+
+1. 下载并双击 `rawsift-0.2.0-windows-x64.exe`。
+2. 使用 rawsift 时请保持控制台窗口开启。
+3. 软件会在默认浏览器中打开 `http://127.0.0.1:8765`。
+4. 关闭控制台窗口即可停止本地软件。
+
+无需安装，也不要求电脑已有 Python 环境。任务数据保存在 `%USERPROFILE%\.rawsift\jobs`。目前 EXE 尚未进行代码签名，因此 Windows SmartScreen 可能显示“未知发布者”提示；Release 页面提供 SHA-256 校验值和测试信息。
+
+其他版本和更新说明请查看 [GitHub Releases](https://github.com/AjaxFlare/rawsift/releases)。
+
+## 从源码安装 / CLI 快速开始
 
 ```bash
 git clone https://github.com/AjaxFlare/rawsift.git
@@ -42,6 +58,8 @@ rawsift /path/to/photos \
 ## 本地软件与外接视觉 API
 
 rawsift 现在包含适用于 Windows 和 macOS 的本地浏览器软件。确定性技术初筛、RAW 解码、包围识别和报告生成都在电脑本机完成。可选的 OpenAI 兼容视觉 API 只负责判断构图、主体清晰度、表情、时机和干扰元素。
+
+Windows 用户可以直接运行上面的便携版程序。macOS、开发环境或希望从源码安装的用户可以使用：
 
 ```bash
 python -m pip install -e ".[app,raw]"
