@@ -5,6 +5,7 @@ import json
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -14,6 +15,7 @@ from PIL import Image
 from rawsift.app import create_app
 from rawsift.app.config import VisionConfig
 from rawsift.app.jobs import JobStore
+from rawsift.app.launcher import main as launcher_main
 from rawsift.app.security import contained_path, safe_relative_path, validate_api_base_url
 from rawsift.app.vision import parse_json_response, preview_data_url, review_previews, test_provider as check_provider
 
@@ -39,6 +41,17 @@ class SecurityTests(unittest.TestCase):
         self.assertEqual(validate_api_base_url("http://127.0.0.1:11434/v1"), "http://127.0.0.1:11434/v1")
         with self.assertRaises(ValueError):
             validate_api_base_url("http://api.example.com/v1")
+
+
+class FrozenExecutableTests(unittest.TestCase):
+    def test_launcher_dispatches_frozen_cli_mode(self) -> None:
+        with (
+            patch("sys.argv", ["rawsift.exe", "--rawsift-cli", "photos"]),
+            patch("rawsift.cli.main", return_value=0) as cli_main,
+        ):
+            with self.assertRaisesRegex(SystemExit, "0"):
+                launcher_main()
+        cli_main.assert_called_once_with()
 
 
 class FakeResponsesClient:

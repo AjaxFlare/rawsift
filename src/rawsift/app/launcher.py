@@ -3,11 +3,18 @@
 from __future__ import annotations
 
 import argparse
+import sys
 import threading
 import webbrowser
 
 
 def main() -> None:
+    if len(sys.argv) > 1 and sys.argv[1] == "--rawsift-cli":
+        from rawsift.cli import main as cli_main
+
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        raise SystemExit(cli_main())
+
     parser = argparse.ArgumentParser(description="Launch the local rawsift application")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8765)

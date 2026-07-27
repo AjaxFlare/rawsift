@@ -105,10 +105,12 @@ class JobStore:
         job_dir = self._job_dir(job_id)
         payload = self.update(job_id, status="running", error=None)
         options = payload.get("options", {})
-        command = [
-            sys.executable,
-            "-m",
-            "rawsift",
+        command = [sys.executable]
+        if getattr(sys, "frozen", False):
+            command.append("--rawsift-cli")
+        else:
+            command.extend(["-m", "rawsift"])
+        command.extend([
             str(job_dir / "input"),
             "--output",
             str(job_dir / "report"),
@@ -122,7 +124,7 @@ class JobStore:
             str(options.get("duplicate_similarity", 0.90)),
             "--max-preview",
             str(options.get("max_preview", 1600)),
-        ]
+        ])
         if options.get("bracket_detection") == "off":
             command.extend(["--bracket-detection", "off"])
         if options.get("export_xmp"):
