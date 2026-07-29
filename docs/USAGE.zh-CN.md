@@ -29,12 +29,13 @@ rawsift 输入路径 --output 输出目录 [选项]
 
 输入路径可以是单个支持的文件，也可以是文件夹。文件夹会递归扫描。如果指定的输出目录已经包含文件，程序会建立带编号的新目录，不会覆盖旧报告。
 
+精选不设固定比例。每张合格的非重复照片，以及每个重复组中合格的最佳照片，都会标为精选。
+
 ## 参数
 
 | 参数 | 默认值 | 说明 |
 |---|---:|---|
 | `--profile general\|macro-nature` | `general` | 选择技术评分权重。 |
-| `--keep-rate 0.10..0.80` | `0.25` | 非包围组候选中标为精选的比例。 |
 | `--duplicate-window 1..100` | `8` | 每张照片向前比较的相邻文件数量。 |
 | `--duplicate-similarity 0.80..0.99` | `0.90` | 普通重复片的感知相似度阈值。 |
 | `--max-preview 800..4000` | `1600` | 预览图最长边像素。 |
@@ -65,8 +66,7 @@ rawsift ~/Pictures/Trip --output ./trip-report
 ```bash
 rawsift ~/Pictures/Insects \
   --output ./insect-report \
-  --profile macro-nature \
-  --keep-rate 0.30
+  --profile macro-nature
 ```
 
 较长的鸟类连拍：

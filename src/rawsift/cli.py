@@ -63,7 +63,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("input", type=Path, help="Input photo or directory")
     parser.add_argument("--output", type=Path, default=Path("rawsift-report"), help="Output report directory")
     parser.add_argument("--profile", choices=("general", "macro-nature"), default="general")
-    parser.add_argument("--keep-rate", type=float, default=0.25)
     parser.add_argument("--duplicate-window", type=int, default=8)
     parser.add_argument("--duplicate-similarity", type=float, default=0.90)
     parser.add_argument("--max-preview", type=int, default=1600)
@@ -71,8 +70,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--copy-bracket-originals", action="store_true", help="Copy detected bracket originals into report subfolders")
     parser.add_argument("--export-xmp", action="store_true", help="Export optional rating sidecars under the report directory")
     args = parser.parse_args()
-    if not 0.10 <= args.keep_rate <= 0.80:
-        parser.error("--keep-rate must be between 0.10 and 0.80")
     if not 1 <= args.duplicate_window <= 100:
         parser.error("--duplicate-window must be between 1 and 100")
     if not 0.80 <= args.duplicate_similarity <= 0.99:
@@ -585,7 +582,7 @@ def group_duplicates(items: list[dict[str, Any]], window: int, threshold: float)
             items[index]["duplicate_count"] = len(indices)
 
 
-def add_scores_and_labels(items: list[dict[str, Any]], profile: str, keep_rate: float) -> None:
+def add_scores_and_labels(items: list[dict[str, Any]], profile: str) -> None:
     overall_scores = robust_scores([item["focus_raw"] for item in items])
     center_scores = robust_scores([item["center_focus_raw"] for item in items])
     contrast_scores = robust_scores([item["contrast_raw"] for item in items])
@@ -622,11 +619,7 @@ def add_scores_and_labels(items: list[dict[str, Any]], profile: str, keep_rate: 
         item for item in winners
         if not (item["exposure_score"] < 25 or (len(items) >= 5 and item["combined_focus_score"] <= 8))
     ]
-    pick_count = max(1, math.ceil(len(eligible_winners) * keep_rate)) if eligible_winners else 0
-    pick_ids = {
-        item["index"]
-        for item in sorted(eligible_winners, key=lambda row: row["technical_score"], reverse=True)[:pick_count]
-    }
+    pick_ids = {item["index"] for item in eligible_winners}
 
     for item in items:
         severe = item["exposure_score"] < 25 or (len(items) >= 5 and item["combined_focus_score"] <= 8)
@@ -941,7 +934,7 @@ def main() -> int:
         if args.bracket_detection == "auto":
             detect_brackets(items)
         group_duplicates(items, args.duplicate_window, args.duplicate_similarity)
-        add_scores_and_labels(items, args.profile, args.keep_rate)
+        add_scores_and_labels(items, args.profile)
         contact_sheets = write_contact_sheets(output, items)
         bracket_groups = write_bracket_groups(output, root, items, args.copy_bracket_originals)
         xmp_sidecars = write_xmp_sidecars(output, items) if args.export_xmp else []
@@ -955,7 +948,6 @@ def main() -> int:
         "input": str(args.input.expanduser().resolve()),
         "output": str(output),
         "profile": args.profile,
-        "keep_rate": args.keep_rate,
         "bracket_detection": args.bracket_detection,
         "bracket_groups": bracket_groups,
         "bracket_originals_copied": args.copy_bracket_originals,

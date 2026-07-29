@@ -242,7 +242,6 @@ export default function App() {
     const batchName = firstPath.includes("/") ? firstPath.split("/")[0] : "新批次";
     form.append("name", batchName);
     form.append("profile", "general");
-    form.append("keep_rate", "0.25");
     files.forEach((file) => { form.append("files", file, file.name); form.append("paths", file.webkitRelativePath || file.name); });
     try {
       const job = await api.createJob(form);

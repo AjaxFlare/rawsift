@@ -88,7 +88,7 @@ rawsift-app
 
 调用示例：
 
-> Use $rawsift to cull this RAW folder in macro-nature mode. Keep about 25%, and group exposure and focus brackets separately.
+> Use $rawsift to cull this RAW folder in macro-nature mode, and group exposure and focus brackets separately.
 
 ## 包围序列处理
 

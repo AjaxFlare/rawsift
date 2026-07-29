@@ -116,8 +116,6 @@ class JobStore:
             str(job_dir / "report"),
             "--profile",
             str(options.get("profile", "general")),
-            "--keep-rate",
-            str(options.get("keep_rate", 0.25)),
             "--duplicate-window",
             str(options.get("duplicate_window", 8)),
             "--duplicate-similarity",

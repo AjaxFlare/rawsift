@@ -56,15 +56,14 @@ def create_app(store: JobStore | None = None):
         paths: Annotated[list[str], Form()],
         name: Annotated[str, Form()] = "",
         profile: Annotated[str, Form()] = "general",
-        keep_rate: Annotated[float, Form()] = 0.25,
     ) -> dict[str, Any]:
         if len(files) != len(paths):
             raise HTTPException(status_code=400, detail="Every file must include a relative path")
         if not files or len(files) > 10000:
             raise HTTPException(status_code=400, detail="Select between 1 and 10,000 files")
-        if profile not in {"general", "macro-nature"} or not 0.10 <= keep_rate <= 0.80:
+        if profile not in {"general", "macro-nature"}:
             raise HTTPException(status_code=400, detail="Invalid culling settings")
-        job = jobs.create(name, {"profile": profile, "keep_rate": keep_rate})
+        job = jobs.create(name, {"profile": profile})
         try:
             for upload, relative in zip(files, paths, strict=True):
                 safe_relative_path(relative)

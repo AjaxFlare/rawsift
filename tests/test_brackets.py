@@ -11,7 +11,7 @@ from unittest.mock import patch
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
-from rawsift.cli import main
+from rawsift.cli import add_scores_and_labels, main
 
 
 def file_hash(path: Path) -> str:
@@ -122,6 +122,32 @@ class BracketDetectionTests(unittest.TestCase):
         summary = json.loads((output / "summary.json").read_text(encoding="utf-8"))
         self.assertEqual(summary["bracket_groups"], [])
         self.assertFalse(any(label.endswith("-bracket") for label in summary["counts"]))
+
+
+class SelectionTests(unittest.TestCase):
+    def test_all_eligible_group_winners_are_picks(self) -> None:
+        items = [
+            {
+                "index": index,
+                "focus_raw": float(index),
+                "center_focus_raw": float(index),
+                "contrast_raw": float(index),
+                "median_luma": 0.5,
+                "highlight_clip": 0.0,
+                "shadow_clip": 0.0,
+                "bracket_group": None,
+                "bracket_type": None,
+                "duplicate_group": None,
+            }
+            for index in range(1, 11)
+        ]
+
+        add_scores_and_labels(items, "general")
+
+        eligible = [item for item in items if item["label"] != "reject"]
+        self.assertGreater(len(eligible), 1)
+        self.assertTrue(all(item["label"] == "pick" for item in eligible))
+        self.assertNotIn("maybe", {item["label"] for item in items})
 
 
 if __name__ == "__main__":
