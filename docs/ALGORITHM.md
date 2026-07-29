@@ -71,7 +71,7 @@ Visual-only focus detection is marked medium confidence because subject motion, 
 
 Detected bracket members receive `exposure-bracket` or `focus-bracket` before technical reject rules are evaluated. They are never submitted to the ordinary duplicate union operation.
 
-For remaining images, the strongest technical member in each duplicate group becomes eligible for `pick`. Lower-ranked group members are labeled `duplicate`. Severe exposure or relative-focus concerns may receive `reject`, but this is always a review recommendation.
+For remaining images, every non-duplicate image and the strongest technical member in each duplicate group becomes a `pick` unless it has a severe technical concern. There is no fixed pick-rate quota. Lower-ranked group members are labeled `duplicate`. Severe exposure or relative-focus concerns may receive `reject`, but this is always a review recommendation.
 
 ## Non-goals
 

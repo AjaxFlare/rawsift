@@ -88,7 +88,7 @@ Clone or copy the complete repository into your personal skills environment. The
 
 Invoke it with a request such as:
 
-> Use $rawsift to cull this RAW folder in macro-nature mode. Keep about 25%, and group exposure and focus brackets separately.
+> Use $rawsift to cull this RAW folder in macro-nature mode, and group exposure and focus brackets separately.
 
 ## Bracket handling
 

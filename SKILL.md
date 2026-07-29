@@ -26,7 +26,6 @@ Use deterministic analysis for the first pass and visual judgment for the final 
    python3 "$SKILL_DIR/scripts/cull_photos.py" "$INPUT" --output "$OUTPUT" --profile macro-nature
    ```
 
-   Use `--keep-rate 0.25` by default. Increase it when the user wants a generous shortlist; reduce it only when they explicitly want strict selection.
 4. Read `summary.json` and `analysis.csv`. Inspect `bracket-groups/exposure/` and `bracket-groups/focus/` before reviewing ordinary picks. Treat all members of a confirmed bracket group as a set; do not discard the darkest exposure frame or the frames focused away from the center.
 5. Open every generated contact sheet with the image-viewing tool. Verify medium-confidence bracket groups visually. Exposure groups should retain stable composition while brightness or recorded exposure changes systematically. Focus groups should retain stable exposure and composition while the sharp plane moves across the subject.
 6. Visually review at least all `pick` candidates and each ordinary duplicate group's highest-ranked two images. For macro photographs, prioritize focus on the insect's or animal's visible eye and critical body detail. For people, prioritize expression, open eyes, and gesture. For landscapes and travel, assess composition, timing, and distracting elements.
@@ -36,7 +35,6 @@ Use deterministic analysis for the first pass and visual judgment for the final 
 ## Command options
 
 - `--profile general|macro-nature`: choose scoring weights.
-- `--keep-rate 0.10..0.80`: proportion of non-duplicate group winners marked as pick candidates.
 - `--duplicate-window N`: compare each image with the preceding `N` images; use 8 for normal bursts and 20 for long bursts.
 - `--duplicate-similarity 0.80..0.99`: lower values group more aggressively; keep 0.90 unless results show missed bursts.
 - `--max-preview 800..4000`: longest preview edge. Use at least 1600 for focus review.

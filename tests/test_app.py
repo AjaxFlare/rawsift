@@ -102,7 +102,7 @@ class AppTests(unittest.TestCase):
 
             response = client.post(
                 "/api/jobs",
-                data={"paths": ["set/one.jpg", "set/two.jpg"], "name": "test set", "profile": "general", "keep_rate": "0.25"},
+                data={"paths": ["set/one.jpg", "set/two.jpg"], "name": "test set", "profile": "general"},
                 files=[
                     ("files", ("one.jpg", jpeg_bytes((30, 100, 60)), "image/jpeg")),
                     ("files", ("two.jpg", jpeg_bytes((35, 105, 65)), "image/jpeg")),

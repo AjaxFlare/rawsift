@@ -29,12 +29,13 @@ rawsift INPUT --output OUTPUT [OPTIONS]
 
 `INPUT` may be one supported file or a directory. Directories are scanned recursively. If the requested output directory is non-empty, the program creates a numbered sibling rather than overwriting it.
 
+Selection has no fixed keep-rate quota. Every eligible non-duplicate frame and each eligible duplicate-group winner is marked as a pick.
+
 ## Options
 
 | Option | Default | Description |
 |---|---:|---|
 | `--profile general\|macro-nature` | `general` | Select technical scoring weights. |
-| `--keep-rate 0.10..0.80` | `0.25` | Fraction of eligible non-bracket group winners marked as picks. |
 | `--duplicate-window 1..100` | `8` | Number of preceding adjacent files checked for near duplicates. |
 | `--duplicate-similarity 0.80..0.99` | `0.90` | Perceptual similarity threshold for duplicate grouping. |
 | `--max-preview 800..4000` | `1600` | Maximum preview edge in pixels. |
@@ -65,8 +66,7 @@ Macro and insect folder:
 ```bash
 rawsift ~/Pictures/Insects \
   --output ./insect-report \
-  --profile macro-nature \
-  --keep-rate 0.30
+  --profile macro-nature
 ```
 
 Long burst sequences:
